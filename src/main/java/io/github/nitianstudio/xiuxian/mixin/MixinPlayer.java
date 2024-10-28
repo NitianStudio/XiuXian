@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static io.github.nitianstudio.xiuxian.vanilla.ModPlayer.*;
 import static net.minecraft.network.syncher.SynchedEntityData.*;
 
 @Mixin(Player.class)
