@@ -39,6 +39,11 @@ neoForge {
         minecraftVersion = project.parchment_minecraft_version
     }
 
+    interfaceInjectionData {
+        from("interfaces.json")
+        publish(file("interfaces.json"))
+    }
+
     // This line is optional. Access Transformers are automatically detected
     // accessTransformers.add('src/main/resources/META-INF/accesstransformer.cfg')
 

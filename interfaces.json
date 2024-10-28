@@ -1,0 +1,5 @@
+{
+  "net/minecraft/world/entity/player/Player": [
+    "io/github/nitianstudio/xiuxian/api/interfaces/IPlayer"
+  ]
+}

@@ -1,5 +1,6 @@
 package io.github.nitianstudio.xiuxian.mixin;
 
+import io.github.nitianstudio.xiuxian.api.interfaces.IPlayer;
 import io.github.nitianstudio.xiuxian.api.practice.BreathLevel;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
@@ -15,7 +16,7 @@ import static io.github.nitianstudio.xiuxian.vanilla.ModPlayer.*;
 import static net.minecraft.network.syncher.SynchedEntityData.*;
 
 @Mixin(Player.class)
-public abstract class MixinPlayer extends Entity {
+public abstract class MixinPlayer extends Entity implements IPlayer {
     public MixinPlayer(EntityType<?> entityType, Level level) {
         super(entityType, level);
     }
