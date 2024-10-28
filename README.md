@@ -1,2 +1,2 @@
-# soiam
-Separation of Immortals and mortals 仙凡两别
+# XiuXian
+修仙/仙道
