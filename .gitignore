@@ -4,6 +4,8 @@
 
 .idea/
 
+src/main/pack-info/
+
 # Ignore Gradle GUI config
 gradle-app.setting
 

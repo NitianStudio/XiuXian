@@ -8,6 +8,18 @@ plugins {
 version = mod_version
 group = mod_group_id
 
+def packInfo = file("src/main/pack-info")
+
+sourceSets {
+    main {
+        java {
+            srcDir(packInfo.absoluteFile)
+        }
+    }
+}
+
+infoCreate(file("src/main/java"), "", packInfo, package_info)
+
 repositories {
     mavenLocal()
 }
@@ -144,5 +156,30 @@ idea {
     module {
         downloadSources = true
         downloadJavadoc = true
+    }
+}
+
+static def infoCreate(File file, String module, File info, String pifInfo) {
+    def list = file.listFiles()
+    if (list != null) {
+        for (final def p in list ) {
+            String name = module.isEmpty() ? p.name : module + "." + p.name
+            if (p.isDirectory()) {
+                infoCreate(p, name, info, pifInfo)
+            } else {
+                // has java file to create package-info
+                def packageInfoFile = new File(info, module.replace(".", File.separator) + File.separator + "package-info.java")
+
+                def parentFile = packageInfoFile.parentFile
+                if (!parentFile.exists()) {
+                    parentFile.mkdirs()
+                }
+                if (!packageInfoFile.exists()) {
+                    def writer = packageInfoFile.newWriter()
+                    writer.writeLine(pifInfo.replace('${packageName}', module))
+                    writer.close()
+                }
+            }
+        }
     }
 }
