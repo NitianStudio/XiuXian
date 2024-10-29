@@ -1,24 +1,23 @@
 package io.github.nitianstudio.xiuxian.api.practice;
 
+import io.github.nitianstudio.xiuxian.api.interfaces.IBreathLevel;
 import net.minecraft.util.StringRepresentable;
 
-public enum BreathLevel implements StringRepresentable {//练气等级
-    LAIC(0, generatedUpExp(1F, 0F, 0F)),//凡人
-    BREATH(1, generatedUpExp(100F, 30F, 10F)),//练气
-    FOUNDATION(2, generatedUpExp(400F, 200F, 50F)),//筑基
-    ELIXIR(3, generatedUpExp(3000F, 500F, 100F)),//金丹
-    SPIRITUAL_BABY(4, generatedUpExp(8000F, 2000F, 400F)),//元婴
-    INCARNATION(5, generatedUpExp(40000F, 20000F, 1200F)),//化神
-    REFINING_NULL(6, generatedUpExp(300000, 50000F, 20000F)),//炼虚
-    TRANSCENDENCY(7, generatedUpExp(900000F, 400000F, 60000F)),//合体
-    MAHAYANA(8, generatedUpExp(10000000F, 5000000F, 100000F)),//大乘
-    JUDGMENT(9, generatedUpExp(100000000000F, 400000000F, 4000000F)),
+public enum BreathLevel implements StringRepresentable, IBreathLevel {//练气等级
+    LAIC(generatedUpExp(1F, 0F, 0F)),//凡人
+    BREATH(generatedUpExp(100F, 30F, 10F)),//练气
+    FOUNDATION(generatedUpExp(400F, 200F, 50F)),//筑基
+    ELIXIR(generatedUpExp(3000F, 500F, 100F)),//金丹
+    SPIRITUAL_BABY(generatedUpExp(8000F, 2000F, 400F)),//元婴
+    INCARNATION(generatedUpExp(40000F, 20000F, 1200F)),//化神
+    REFINING_NULL( generatedUpExp(300000, 50000F, 20000F)),//炼虚
+    TRANSCENDENCY( generatedUpExp(900000F, 400000F, 60000F)),//合体
+    MAHAYANA(generatedUpExp(10000000F, 5000000F, 100000F)),//大乘
+    JUDGMENT( generatedUpExp(100000000000F, 400000000F, 4000000F)),
     ;//渡劫
-    public final int level;
     public final float earlyphase, metaphase, anaphase, complete;//升级所需灵气
 
-    BreathLevel(int level, float... e_m_a_c) {
-        this.level = level;
+    BreathLevel(float... e_m_a_c) {
         this.earlyphase = e_m_a_c[0];
         this.metaphase = e_m_a_c[1];
         this.anaphase = e_m_a_c[2];
@@ -55,5 +54,10 @@ public enum BreathLevel implements StringRepresentable {//练气等级
     @Override
     public String getSerializedName() {
         return name();
+    }
+
+    @Override
+    public int index() {
+        return 0;
     }
 }
