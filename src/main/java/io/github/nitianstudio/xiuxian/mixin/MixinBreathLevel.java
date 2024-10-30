@@ -1,16 +1,15 @@
 package io.github.nitianstudio.xiuxian.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import io.github.nitianstudio.xiuxian.api.practice.BreathLevel;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(BreathLevel.class)
+@Mixin(value = BreathLevel.class)
+@Debug(export = true)
 public class MixinBreathLevel {
-    @Final @Mutable @Shadow
-    private static BreathLevel[] $VALUES;
 
     @Unique
     private int xiuXian$ordinal;
@@ -20,8 +19,8 @@ public class MixinBreathLevel {
         xiuXian$ordinal = ordinal;
     }
 
-    @Inject(method = "index", at = @At("RETURN"), cancellable = true)
-    private void index(CallbackInfoReturnable<Integer> cir) {
-        cir.setReturnValue(xiuXian$ordinal);
+    @ModifyReturnValue(method = "index", at = @At("RETURN"))
+    private int modifyReturnValue(int original) {
+        return xiuXian$ordinal;
     }
 }
